@@ -1,0 +1,30 @@
+venv
+data
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+.env/
+
+# Flask
+instance/
+*.log
+
+# ML / data
+*.h5
+*.pkl
+*.joblib
+data
+models/
+*.csv
+*.xlsx
+*.json
+
+# OS / Editor
+.vscode/
+.idea/
+.DS_Store
