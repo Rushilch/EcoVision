@@ -11,3 +11,5 @@ uvicorn
 streamlit
 geopandas
 seaborn
+groq
+dotenv

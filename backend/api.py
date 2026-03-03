@@ -161,3 +161,52 @@ def explain_shap(module: str, index: int = 0):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+# =====================================================
+# LOCAL SHAP ENDPOINTS (FOR DASHBOARD INPUT)
+# =====================================================
+
+def local_shap(model, X: pd.DataFrame):
+    import shap
+
+    explainer = shap.TreeExplainer(model)
+    shap_values = explainer(X)
+
+    vals = shap_values.values[0]
+    features = X.columns.tolist()
+
+    values = {f: float(v) for f, v in zip(features, vals)}
+
+    main_feature = max(values, key=lambda k: abs(values[k]))
+
+    return {
+        "values": values,
+        "text": f"Prediction mainly influenced by {main_feature}."
+    }
+
+
+@app.post("/explain/uhi")
+def explain_uhi_local(data: UHIRequest):
+    try:
+        X = pd.DataFrame([data.dict()])
+        return local_shap(uhi_model, X)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/explain/flood")
+def explain_flood_local(data: FloodRequest):
+    try:
+        X = pd.DataFrame([data.dict()])
+        return local_shap(flood_model, X)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/explain/plastic")
+def explain_plastic_local(data: PlasticRequest):
+    try:
+        X = pd.DataFrame([data.dict()])
+        return local_shap(plastic_model, X)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
