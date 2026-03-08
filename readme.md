@@ -208,8 +208,8 @@ You can retrain manually if needed:
 
 ```bash
 python training/train_uhi_model.py
-python models/train_flood_model.py
-python models/train_plastic_model.py
+python training/train_flood_model.py
+python training/train_plastic_model.py
 
 ```
 
