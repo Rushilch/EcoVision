@@ -117,7 +117,7 @@ ecovision/
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/ecovision.git
+git clone https://github.com/rushilch/ecovision.git
 cd ecovision
 
 ```
@@ -202,14 +202,14 @@ data/processed/
 
 ## 🤖 Model Training
 
-Models are trained automatically during preprocessing or API startup.
+Models are trained.
 
 You can retrain manually if needed:
 
 ```bash
-python models/uhi_model.py
-python models/flood_model.py
-python models/plastic_model.py
+python training/train_uhi_model.py
+python models/train_flood_model.py
+python models/train_plastic_model.py
 
 ```
 
@@ -217,10 +217,10 @@ python models/plastic_model.py
 
 ## 🔌 Running
 
-ecovision.py starts the backend and runs the server dashboard
+run_ecovision.py starts the backend and runs the server dashboard
 
 ```
-python ecovision.py
+python run_ecovision.py
 
 ```
 
@@ -276,44 +276,4 @@ http://localhost:8501
 -   Available via API and dashboard views
     
 
-----------
-
-## 📌 Key Assumptions
-
--   Satellite imagery is represented using derived indices (LST, NDVI, NDBI)
-    
--   Flood risk uses proxy indicators where physical models are unavailable
-    
--   Ward boundaries are approximated via spatial clustering
-    
--   The system is a **decision-support prototype**, not a real-time warning system
-    
-
-----------
-
-## ⚠️ Limitations
-
--   No raw raster processing
-    
--   No real-time sensor ingestion
-    
--   Temporal forecasting is limited
-    
--   Ward shapefiles not integrated
-    
-
-----------
-
-## 🚀 Future Enhancements
-
--   Time-series forecasting (LSTM)
-    
--   PostGIS-based spatial storage
-    
--   Real-time IoT integration
-    
--   PDF/CSV report export
-    
--   Role-based access control
-    
     
